@@ -3,6 +3,8 @@ import iconaccount from "/assets/compte-bancaire.png";
 import depense from "/assets/frais.png";
 import objectif from "/assets/objectif.png";
 import camembert from "/assets/camemberts.png";
+import Link from "next/link";
+
 
 export default function Home() {
   return (
@@ -13,18 +15,18 @@ export default function Home() {
           easyBudget
         </h1>
         <div className="flex gap-4">
-          <a
+          <Link
             href="#"
             className="hover:bg-indigo-50 text-indigo-700 font-medium px-5 py-2 rounded transition"
           >
             Inscription
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/login"
             className="bg-indigo-700 text-white font-medium px-5 py-2 rounded shadow hover:bg-indigo-800 transition"
           >
             Connexion
-          </a>
+          </Link>
         </div>
       </header>
 

@@ -12,10 +12,11 @@ model User {
   email     String    @unique
   password  String
   createdAt DateTime  @default(now())
-
-  profile   Profile?
-  posts     Post[]
+  firstName String
+  lastName  String
   comments  Comment[]
+  posts     Post[]
+  profile   Profile?
 }
 
 model Profile {
@@ -24,7 +25,6 @@ model Profile {
   lastName  String?
   bio       String?
   userId    Int     @unique
-
   user      User    @relation(fields: [userId], references: [id])
 }
 
@@ -34,18 +34,16 @@ model Post {
   content   String
   createdAt DateTime  @default(now())
   userId    Int
-
-  user      User      @relation(fields: [userId], references: [id])
   comments  Comment[]
+  user      User      @relation(fields: [userId], references: [id])
 }
 
 model Comment {
-  id        Int       @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   content   String
-  createdAt DateTime  @default(now())
+  createdAt DateTime @default(now())
   userId    Int
   postId    Int
-
-  user      User      @relation(fields: [userId], references: [id])
-  post      Post      @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }
