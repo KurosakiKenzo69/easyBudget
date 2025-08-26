@@ -3,23 +3,47 @@ import React from "react";
 import Form from 'next/form';
 import GoogleButton from "@/app/components/GoogleButton";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Loader from "@/app/components/loading";
+import { signIn } from "next-auth/react";
 
 export default function Login() {
 
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [googleToken, setGoogleToken] = useState("");
+  const [password, setPassword] = useState("");
+  const { data: session, status } = useSession();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session) {
+      router.push("/dashboard");
+    }
+  }, [session, router]);
+
+  if (status === "loading") {
+    return <Loader />;
+  }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const res = await fetch("/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
+        const res = await signIn("credentials", {
+          redirect: false,
+          email,
+          password,
         });
+      
 
-        const data = await res.json();
-        alert(data.message || data.error);
+        if (res.ok) {
+          router.push("/dashboard");
+        
+        } else {
+          alert("Erreur de connexion");
+        }
     };
 
     return (
@@ -44,7 +68,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
             className="border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
-          <button className="bg-indigo-700 text-white py-2 rounded hover:bg-indigo-800 transition cursor-pointer">
+          <button type="submit" className="bg-indigo-700 text-white py-2 rounded hover:bg-indigo-800 transition cursor-pointer">
             Se connecter
           </button>
 

@@ -61,7 +61,7 @@ export default function Register() {
                         placeholder="Confirmer le mot de passe"
                         className="border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 "
                     />
-                    <button className="bg-indigo-700 text-white py-2 rounded hover:bg-indigo-800 transition cursor-pointer">
+                    <button type="submit" className="bg-indigo-700 text-white py-2 rounded hover:bg-indigo-800 transition cursor-pointer">
                         S'inscrire
                     </button>
 

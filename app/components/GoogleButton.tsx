@@ -1,12 +1,23 @@
 "use client";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
+import { redirect } from "next/navigation";
+
+// Removed invalid import of session from "next-auth"
 
 export default function GoogleButton({ text }: { text: string }) {
-  return (
+    const { data: session } = useSession();
+
+    if (session) {
+        redirect("/dashboard");
+    }
+
+
+    return (
     <button
       type="button"
       onClick={() => {
-        // tu appelleras ici ta logique de connexion avec Google
+        signIn("google");
         console.log("Google Sign-in");
       }}
       className="flex items-center justify-center w-full gap-3 border border-gray-300 py-2 rounded-md shadow-sm bg-white hover:bg-gray-50 transition"
