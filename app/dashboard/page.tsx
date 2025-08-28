@@ -50,14 +50,12 @@ export default function Dashboard() {
             </button>
           </nav>
         </div>
-        <a href="/">
           <button
-            onClick={() => signOut()}
+            onClick={() => signOut({ callbackUrl: "/" })}
             className="flex items-center gap-2 text-red-500 hover:text-red-700 transition"
           >
-            <FiLogOut /> Déconnexion
+             Déconnexion
           </button>
-        </a>
       </aside>
 
       {/* Main content */}

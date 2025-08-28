@@ -16,7 +16,7 @@ export default function Home() {
         </h1>
         <div className="flex gap-4">
           <Link
-            href="#"
+            href="/register"
             className="hover:bg-indigo-50 text-indigo-700 font-medium px-5 py-2 rounded transition"
           >
             Inscription

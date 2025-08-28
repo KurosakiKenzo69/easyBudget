@@ -3,7 +3,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { redirect } from "next/navigation";
 
-// Removed invalid import of session from "next-auth"
 
 export default function GoogleButton({ text }: { text: string }) {
     const { data: session } = useSession();
