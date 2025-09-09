@@ -11,6 +11,7 @@ import {
   FiCalendar,
 } from "react-icons/fi";
 import Loading from "../components/loading";
+import Sidebar from "../components/Sidebar";
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
@@ -30,33 +31,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-lg p-5 flex flex-col justify-between">
-        <div>
-          <h2 className="text-xl font-bold text-gray-700 mb-6">EasyBudgets</h2>
-          <nav className="flex flex-col gap-4 text-gray-600">
-            <button className="flex items-center gap-2 hover:text-blue-600 transition cursor-pointer">
-              <FiHome /> Accueil
-            </button>
-            {/* lien vers le calendrier */}
-
-            <button className="flex items-center gap-2 hover:text-blue-600 transition cursor-pointer">
-              <FiCalendar /> Calendrier
-            </button>
-            <button className="flex items-center gap-2 hover:text-blue-600 transition cursor-pointer">
-              <FiUser /> Profil
-            </button>
-            <button className="flex items-center gap-2 hover:text-blue-600 transition cursor-pointer">
-              <FiSettings /> Paramètres
-            </button>
-          </nav>
-        </div>
-          <button
-            onClick={() => signOut({ callbackUrl: "/" })}
-            className="flex items-center gap-2 text-red-500 hover:text-red-700 transition"
-          >
-             Déconnexion
-          </button>
-      </aside>
+      <Sidebar />
 
       {/* Main content */}
       <main className="flex-1 p-10">

@@ -6,7 +6,7 @@ import "react-calendar/dist/Calendar.css";
 
 type Value = Date | [Date, Date];
 
-export default function CalendarPage() {
+export default function Calendrier() {
   const [value, setValue] = useState<Value>(new Date());
 
   return (
